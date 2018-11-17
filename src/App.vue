@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <navbar :title="title" :burger="burger"/>
-    <router-view  @updateTitle="updateTitle" @login="hideBurger"/>
+    <navbar :title="title"/>
+    <router-view    
+      @updateTitle="updateTitle" 
+      @login="hideBurger"
+      @firstNext="setNama"
+      @reqApi="modelDebugger"/>
     <offcanvas @updateTitle="updateTitle"/>
   </div>
 </template>
@@ -18,8 +22,9 @@ export default {
   },
   data () {
     return {
-      title: 'COMMUTE POINTS',
-      burger: true
+      title: 'JAGA JALAN',
+      burger: true,
+      nama: ''
     }
   },
   methods: {
@@ -28,6 +33,12 @@ export default {
     },
     hideBurger (value) {
       this.burger = value
+    },
+    setNama (nama) {
+      this.nama = nama
+    },
+    modelDebugger (value) {
+      console.log(value)
     }
   }
 }

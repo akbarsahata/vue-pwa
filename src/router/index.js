@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Mainpage from '@/components/Mainpage'
-import Challenge from '@/components/Challenge'
-import Login from '@/components/Login'
-import Registration from '@/components/Registration'
-import Countdown from '@/components/Countdown'
-import Finished from '@/components/Finished'
+import First from '@/components/First'
+import Second from '@/components/Second'
+import Third from '@/components/Third'
+import Fourth from '@/components/Fourth'
+import Fifth from '@/components/Fifth'
+import Sixth from '@/components/Sixth'
 
 Vue.use(Router)
 
@@ -13,34 +13,44 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'login',
-      component: Login,
+      name: 'First',
+      component: First,
       props: true
     },
     {
-      path: '/challenge',
-      name: 'Challenge',
-      component: Challenge
+      path: '/second/:nama',
+      name: 'Second',
+      props: true,
+      component: Second
     },
     {
-      path: '/app',
-      name: 'Mainpage',
-      component: Mainpage
+      path: '/third',
+      name: 'Third',
+      props: (route) => ({
+        asal: route.query.asal,
+        tujuan: route.query.tujuan,
+        kendaraan: route.query.kendaraan,
+        sendiri: route.query.sendiri,
+        atasan: route.query.atasan,
+        bawahan: route.query.bawahan,
+        perawakan: route.query.perawakan,
+        merk: route.query.merk
+      }),
+      component: Third
     },
     {
-      path: '/registration',
-      name: 'Registration',
-      component: Registration
+      path: '/fourth/:percentage',
+      props: true,
+      component: Fourth
     },
     {
-      path: '/countdown',
-      name: 'Countdown',
-      component: Countdown
+      path: '/fifth',
+      props: true,
+      component: Fifth
     },
     {
-      path: '/finished',
-      name: 'Finished',
-      component: Finished
+      path: '/sixth',
+      component: Sixth
     }
   ],
   scrollBehavior (to, from, saved) {
