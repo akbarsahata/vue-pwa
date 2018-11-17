@@ -34,7 +34,14 @@ export default new Router({
         atasan: route.query.atasan,
         bawahan: route.query.bawahan,
         perawakan: route.query.perawakan,
-        merk: route.query.merk
+        merk: route.query.merk,
+        profesi: route.query.profesi,
+        usia: route.query.usia,
+        gender: route.query.gender,
+        cuaca: route.query.cuaca,
+        bulan: route.query.bulan,
+        waktu: route.query.waktu,
+        handphone: route.query.handphone
       }),
       component: Third
     },

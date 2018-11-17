@@ -165,7 +165,7 @@ export default {
       })
         .get((results, component) => {
           component.map(c => {
-            if (c.key === 'user_agent') this.deviceType = c.value
+            if (c.key === 'user_agent') this.deviceType = c.value || 'Samsung'
           })
         })
     },
@@ -183,9 +183,10 @@ export default {
                     precipProbabily: hujan
                   }
                 }
-              } = await axios.get(`https://api.darksky.net/forecast/349e94c681005903f7b3cacebea186c8/${lat},${long}`, {
-                'Access-Control-Allow-Origin': '*'
-              })
+              } = await axios.get(
+                'https://cors-anywhere.herokuapp.com/' +
+                `https://api.darksky.net/forecast/349e94c681005903f7b3cacebea186c8/${lat},${long}`
+              )
 
               if (Number(hujan) > 0.75) {
                 this.cuaca = 'Hujan'
