@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "fingerprintjs2": "^1.8.6",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "moment": "^2.22.2",
+    "ua-parser-js": "^0.7.19",
     "uikit": "^3.0.0-beta.30",
     "vue": "^2.3.3",
     "vue-router": "^2.3.1",
