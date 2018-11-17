@@ -77,7 +77,8 @@ export default {
           {
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer MN4OhipQ0Pvy7NmKamBjevFuYUwlPm/jIzPV6N+JfKQXjiCdPauBoY5RMYO1VGg6NH7oBZ9pZi1ghkO6vn+uSA=='
+              'Authorization': 'Bearer MN4OhipQ0Pvy7NmKamBjevFuYUwlPm/jIzPV6N+JfKQXjiCdPauBoY5RMYO1VGg6NH7oBZ9pZi1ghkO6vn+uSA==',
+              'Access-Control-Allow-Origin': '*'
             }
           }
         )
