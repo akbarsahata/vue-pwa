@@ -102,7 +102,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       filename: 'service-worker.js',
       staticFileGlobs: [
         'dist/**/*.{js,html,css}',
-        'dist/static/*.{png}'
+        'dist/static/*.{png,gif}'
       ],
       minify: true,
       stripPrefix: 'dist/'
