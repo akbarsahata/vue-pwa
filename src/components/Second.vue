@@ -1,6 +1,6 @@
 <template>
   <div class="registration">
-    <h2 class="uk-h2">Hai, {{nama}}</h2>
+    <h2 class="uk-h2">Hai, {{nama || window.localStorage.getItem('nama') }}</h2>
     <p>Sudah tahu mau kemana hari ini?</p>
     <div class="uk-margin">
       <label for="">Cuaca</label>
@@ -173,26 +173,26 @@ export default {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           async (position) => {
-            const lat = Math.round(position.coords.latitude)
-            const long = Math.round(position.coords.longitude)
+            const lat = position.coords.latitude
+            const long = position.coords.longitude
+
+            window.localStorage.setItem('lat', lat)
+            window.localStorage.setItem('long', long)
 
             try {
               const {
                 data: {
-                  currently: {
-                    precipProbabily: hujan
-                  }
+                  cuaca
                 }
-              } = await axios.get(
-                'https://cors-anywhere.herokuapp.com/' +
-                `https://api.darksky.net/forecast/349e94c681005903f7b3cacebea186c8/${lat},${long}`
+              } = await axios.post(
+                'https://boiling-ridge-20676.herokuapp.com/weather',
+                {
+                  lat,
+                  long
+                }
               )
 
-              if (Number(hujan) > 0.75) {
-                this.cuaca = 'Hujan'
-              } else {
-                this.cuaca = 'Tidak Hujan'
-              }
+              this.cuaca = cuaca
             } catch (error) {
               console.error(error)
               this.cuaca = 'Tidak Hujan'
@@ -215,10 +215,10 @@ export default {
     const time = date.getHours()
     this.bulan = this.bulanBulan[date.getMonth()]
 
-    if (time >= 0 && time <= 6) this.waktu = 'Dini Hari'
-    else if (time >= 7 && time <= 11) this.waktu = 'Pagi'
-    else if (time >= 13 && time <= 16) this.waktu = 'Siang'
-    else if (time >= 17 && time <= 90) this.waktu = 'Sore'
+    if (time >= 2 && time <= 5) this.waktu = 'Dini Hari'
+    else if (time >= 5 && time <= 11) this.waktu = 'Pagi'
+    else if (time >= 13 && time <= 15) this.waktu = 'Siang'
+    else if (time >= 16 && time <= 19) this.waktu = 'Sore'
     else this.waktu = 'Malam'
   },
   data () {

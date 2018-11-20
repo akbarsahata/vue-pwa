@@ -31,10 +31,10 @@ export default {
     }
   },
   created () {
-    if (Number(this.percentage) < 90) {
-      this.status = 'sedang berbahaya!'
+    if (Number(this.percentage) > 50) {
+      this.status = 'sedang berbahaya! ✋🏻'
     } else {
-      this.status = 'aman untuk bepergian'
+      this.status = 'aman untuk bepergian 👍🏻'
     }
   },
   methods: {

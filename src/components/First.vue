@@ -36,6 +36,7 @@ export default {
         this.validate = true
         return
       }
+      window.localStorage.setItem('nama', this.nama)
       this.$emit('firstNext', this.nama)
       this.$router.push({
         path: '/second/' + this.nama

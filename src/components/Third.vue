@@ -38,8 +38,8 @@ export default {
   },
   methods: {
     async requestApi () {
-      let score = 0
       console.log(this.handphone)
+      let percentage
       try {
         const input = {
           Inputs: {
@@ -69,31 +69,26 @@ export default {
         console.log(JSON.stringify(input, null, 2))
         const {
           data: {
-            Results: {
-              output1: output
-            }
+            score
           }
         } = await axios.post(
-          'https://cors-anywhere.herokuapp.com/' +
-          'https://ussouthcentral.services.azureml.net/workspaces/a1c1f3f3790c4771b088905031e7960d/services/63e7ea1e8b8d48fc89d32bef69c1a44c/execute?api-version=2.0&format=swagger',
+          'https://boiling-ridge-20676.herokuapp.com/ml',
           JSON.stringify(input),
           {
             headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer MN4OhipQ0Pvy7NmKamBjevFuYUwlPm/jIzPV6N+JfKQXjiCdPauBoY5RMYO1VGg6NH7oBZ9pZi1ghkO6vn+uSA==',
-              'Access-Control-Allow-Origin': '*'
+              'Content-Type': 'application/json'
             }
           }
         )
 
-        score = output[0]['Scored Probabilities']
-        score = Number(score) * 100
-        score = Math.round(score)
+        percentage = score
       } catch (error) {
         console.error(error)
+
+        percentage = 0
       } finally {
         this.$router.push({
-          path: '/fourth/' + score
+          path: '/fourth/' + percentage
         })
       }
     }

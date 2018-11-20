@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   methods: {
     selesai () {
@@ -23,6 +24,14 @@ export default {
         path: '/'
       })
     }
+  },
+  async created () {
+    const sms = await axios.post('https://boiling-ridge-20676.herokuapp.com/panic', {
+      lat: window.localStorage.getItem('lat') || 1,
+      long: window.localStorage.getItem('long') || 104
+    })
+
+    console.log(sms)
   }
 }
 </script>
