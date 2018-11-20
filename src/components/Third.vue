@@ -2,9 +2,8 @@
   <div class="third">
     <img src="/static/third.png" class="logo">
     <p class="uk-text-center">
-      Sebentar ya, kami sedang menghitung<br>
-      kemungkinanmu memperoleh pejalanan yang<br>
-      aman dan nyaman
+      Sebentar ya, kami sedang menghitung
+      kemungkinanmu menemui gangguan di perjalanan
     </p>
     <img src="/static/loading.gif" class="loading">
   </div>
@@ -12,6 +11,7 @@
 
 <script>
 import axios from 'axios'
+import { ML_URL } from '@/url.js'
 export default {
   props: [
     'asal',
@@ -31,14 +31,12 @@ export default {
     'handphone'
   ],
   created () {
-    console.log('hem')
     setTimeout(async () => {
       await this.requestApi()
     }, 2000)
   },
   methods: {
     async requestApi () {
-      console.log(this.handphone)
       let percentage
       try {
         const input = {
@@ -66,13 +64,12 @@ export default {
           },
           GlobalParameters: {}
         }
-        console.log(JSON.stringify(input, null, 2))
         const {
           data: {
             score
           }
         } = await axios.post(
-          'https://boiling-ridge-20676.herokuapp.com/ml',
+          ML_URL,
           JSON.stringify(input),
           {
             headers: {

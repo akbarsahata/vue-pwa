@@ -44,7 +44,7 @@ export default {
       })
     },
     selesai () {
-      this.$router.push('/')
+      this.$router.push('/second')
     }
   }
 }

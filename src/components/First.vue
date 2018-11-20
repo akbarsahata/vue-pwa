@@ -1,13 +1,33 @@
 <template>
   <div class="login">
-    <p>Halo, boleh tahu nama kamu siapa?</p>
-    <div class="uk-alert-danger" uk-alert v-if="validate">Nama minimal 3 karakter</div>
-    <input 
-      type="text" 
-      class="uk-input"
-      @keydown="hideMessage"
-      v-model="nama">
-    <br>
+    <div class="uk-margin">
+      <p>Halo, boleh tahu nama kamu siapa?</p>
+      <input 
+        type="text" 
+        class="uk-input"
+        @keydown="hideMessage"
+        v-model="nama">
+    </div>
+    <div class="uk-margin">
+      <p for="">Usia</p>
+      <input type="number" class="uk-input" v-model="usia" @keydown="hideMessage">
+    </div>
+    <div class="uk-margin">
+      <p for="">Jenis Kelamin</p>
+      <select v-model="gender" class="uk-select" @change="hideMessage">>
+        <option value="Laki-laki">Laki-laki</option>
+        <option value="Perempuan">Perempuan</option>
+      </select>
+    </div>
+    <div class="uk-margin">
+      <p for="">Profesi</p>
+      <select v-model="profesi" class="uk-select" @change="hideMessage">>
+        <option v-for="p in listprofesi" :key="p" :value="p">{{p}}</option>
+      </select>
+    </div>
+    <div class="uk-margin">
+      <div class="uk-alert-danger" uk-alert v-if="validate">Data Belum Lengkap!</div>
+    </div>
     <button
       class="uk-button uk-button-secondary"
       @click="pressNext">
@@ -21,7 +41,13 @@ export default {
   data () {
     return {
       nama: '',
-      validate: false
+      usia: '',
+      gender: '',
+      profesi: '',
+      validate: false,
+      listprofesi: [
+        'Pelajar', 'Ibu Rumah Tangga', 'Karyawan', 'Penjaga Keamanan', 'Wiraswasta', 'Driver/Supir', 'Pegawai Negeri', 'Lainnya'
+      ]
     }
   },
   methods: {
@@ -36,10 +62,25 @@ export default {
         this.validate = true
         return
       }
+      if (!this.usia) {
+        this.validate = true
+        return
+      }
+      if (!this.gender) {
+        this.validate = true
+        return
+      }
+      if (!this.profesi) {
+        this.validate = true
+        return
+      }
       window.localStorage.setItem('nama', this.nama)
-      this.$emit('firstNext', this.nama)
+      window.localStorage.setItem('usia', this.usia)
+      window.localStorage.setItem('gender', this.gender)
+      window.localStorage.setItem('profesi', this.profesi)
+
       this.$router.push({
-        path: '/second/' + this.nama
+        path: '/second/'
       })
     }
   }
@@ -56,6 +97,18 @@ export default {
   min-height: 100vh;
   padding: 10px;
   padding-top: 0px;
-  margin-top: -30px;
+  margin-top: -56px;
+}
+.uk-margin {
+  width: 100%;
+  margin: 0;
+}
+.uk-margin p {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+.uk-margin input {
+  min-width: 100%;
 }
 </style>

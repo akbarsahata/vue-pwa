@@ -18,9 +18,8 @@ export default new Router({
       props: true
     },
     {
-      path: '/second/:nama',
+      path: '/second/',
       name: 'Second',
-      props: true,
       component: Second
     },
     {

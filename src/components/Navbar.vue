@@ -1,6 +1,6 @@
 <template>
   <nav class="uk-navbar uk-navbar-container uk-margin" uk-sticky="animation: uk-animation-slide-top">
-    <div class="uk-navbar-left" v-if="!burger">
+    <div class="uk-navbar-left" v-if="burger">
       <a class="uk-navbar-toggle" href="#offcanvas-usage" uk-toggle>
         <span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left"></span>
       </a>

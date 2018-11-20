@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <navbar :title="title"/>
+    <navbar :title="title" :burger="burger"/>
     <router-view    
       @updateTitle="updateTitle" 
       @login="hideBurger"
@@ -23,7 +23,7 @@ export default {
   data () {
     return {
       title: 'JAGA JALAN',
-      burger: true,
+      burger: false,
       nama: ''
     }
   },
